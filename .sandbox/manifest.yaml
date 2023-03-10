@@ -6,7 +6,6 @@ hooks:
   build:
     cmd: |
       cs wait service mysql
-      cs wait service mongodb
       rails db:migrate
 
 daemons:
