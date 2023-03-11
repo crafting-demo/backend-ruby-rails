@@ -15,7 +15,7 @@ class ApiController < ApplicationController
     when 'Hello! How are you?'
       response[:message] = "Hello! This is Ruby Rails service."
     when 'Please echo'
-      response[:message] = "Echo from Ruby Rails service. " + @message[:value]
+      response[:message] = "Echo from Ruby Rails service: " + @message[:value]
     when 'Read from database'
       result = read_entity('mysql', @message[:key])
       if result.blank?
@@ -50,7 +50,7 @@ class ApiController < ApplicationController
     def read_entity(store, key)
       case store
       when 'mysql'
-        Mysql.find_by(uuid: key)
+        Mysql.find_by(uuid: key)&.content
       else
         nil
       end
