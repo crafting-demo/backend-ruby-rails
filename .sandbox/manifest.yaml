@@ -6,6 +6,7 @@ hooks:
   build:
     cmd: |
       cs wait service mysql
+      sleep 5
       rails db:migrate
 
 daemons:
