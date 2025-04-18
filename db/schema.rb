@@ -89,12 +89,6 @@ ActiveRecord::Schema[7.0].define(version: 0) do
     t.index ["expire_date"], name: "django_session_expire_date_a5c62663"
   end
 
-  create_table "sample", primary_key: "uuid", id: { type: :string, limit: 36 }, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.text "content"
-    t.timestamp "created_at", default: -> { "CURRENT_TIMESTAMP" }
-    t.timestamp "updated_at", default: -> { "CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP" }
-  end
-
   add_foreign_key "auth_group_permissions", "auth_group", column: "group_id", name: "auth_group_permissions_group_id_b120cbf9_fk_auth_group_id"
   add_foreign_key "auth_group_permissions", "auth_permission", column: "permission_id", name: "auth_group_permissio_permission_id_84c5c92e_fk_auth_perm"
   add_foreign_key "auth_permission", "django_content_type", column: "content_type_id", name: "auth_permission_content_type_id_2f476e4b_fk_django_co"

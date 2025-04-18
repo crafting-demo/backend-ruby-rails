@@ -1,0 +1,18 @@
+hooks:
+  post-checkout:
+    cmd: |
+      sudo apt-get update
+      sudo apt-get install -y ruby-bundler default-libmysqlclient-dev
+      bundle install
+  build:
+    cmd: |
+      cs wait service mysql
+      sleep 5
+      rails db:migrate
+
+daemons:
+  ruby-rails:
+    run:
+      cmd: |
+        rm -f tmp/pids/server.pid
+        rails s -b 0.0.0.0 -p $RAILS_SERVICE_PORT
