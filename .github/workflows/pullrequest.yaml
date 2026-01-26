@@ -1,0 +1,22 @@
+name: PullRequest
+
+on:
+  pull_request:
+    # this action will be triggered each time a PR was made against branch master.
+    branches: [master]
+
+jobs:
+  build:
+    name: Test
+    runs-on: [ubuntu-latest]
+    env:
+      # This is required to post a comment to PR.
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - name: generate-preview-url # name of this step, you can rename this as needed
+        uses: crafting-dev/sandbox-launch-action/@v0.5.2
+        with:
+          # required inputs for sandbox-launch-action to specify the target template.
+          template: test-action
+          envVars: GITHUB_ACTION,GITHUB_REF
+          manual: true
